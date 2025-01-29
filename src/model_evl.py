@@ -19,8 +19,8 @@ def model(x_test,y_test):
     y_pred=model.predict(x_test)
     mit_dic={
         'accuracy':accuracy_score(y_pred,y_test),
-        'recall':recall_score(y_pred,y_test,average='macro'),
-        'precision':precision_score(y_pred,y_test,average='macro')
+        'recall':recall_score(y_pred,y_test,average='micro'),
+        'precision':precision_score(y_pred,y_test,average='micro')
     }
 
     with open('metrics.json','w') as file:

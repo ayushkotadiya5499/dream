@@ -5,8 +5,11 @@ stages:
     deps:
     - path: src/data_ingestion.py
       hash: md5
-      md5: 21bc28522a40ae8fb151b3ef5974457c
-      size: 886
+      md5: 20ad38f6d348773da1677182eacd2518
+      size: 974
+    params:
+      params.yaml:
+        data_ingestion.test_size: 0.2
     outs:
     - path: data/raw
       hash: md5
@@ -41,23 +44,23 @@ stages:
       nfiles: 2
     - path: src/model.py
       hash: md5
-      md5: 08f2b48303ae05e47354c81e4fdab205
-      size: 715
+      md5: 465522632509ceecf2fd0501438e4f9c
+      size: 681
     outs:
     - path: model.pkl
       hash: md5
-      md5: 33365651c9c807e5ac8ce6e26e556126
-      size: 221047
+      md5: 63e0ba8c011ca305f76498042218cfae
+      size: 1039
   model_evl:
     cmd: python src/model_evl.py
     deps:
     - path: model.pkl
       hash: md5
-      md5: 33365651c9c807e5ac8ce6e26e556126
-      size: 221047
+      md5: 63e0ba8c011ca305f76498042218cfae
+      size: 1039
     - path: src/model_evl.py
       hash: md5
-      md5: 69df8324013d3e5953ef6a21f135f55e
+      md5: a8a620259c643e7b95c58f39484e876a
       size: 942
     outs:
     - path: metrics.json

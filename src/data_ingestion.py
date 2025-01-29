@@ -3,6 +3,7 @@ import numpy as np
 import os
 import yaml
 from sklearn.model_selection import train_test_split
+test_size=yaml.safe_load(open('params.yaml','r'))['data_ingestion']
 
 def load_data(url):
     df=pd.read_csv(url)
@@ -14,7 +15,7 @@ def drop(df):
     
 
 def train_test(df,test_size):
-    train_df,test_df=train_test_split(df,test_size=test_size,random_state=5)
+    train_df,test_df=train_test_split(df,test_size=test_size['test_size'],random_state=5)
     return train_df,test_df
 
 def save_data(data_path,train_df,test_df):
@@ -25,7 +26,7 @@ def save_data(data_path,train_df,test_df):
 def main():
     df=load_data('https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv')
     df=drop(df)
-    train_df,test_df=train_test(df,0.2)
+    train_df,test_df=train_test(df,test_size)
     data_path='data/raw'
     save_data(data_path,train_df,test_df)
 
